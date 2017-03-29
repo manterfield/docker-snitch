@@ -13,7 +13,7 @@ RUN apk add --no-cache --virtual .build-deps \
     rm -rf /go/src /go/pkg && \
     apk del .build-deps
 
-ENV DOCKER_ENDPOINT "unix://tmp/docker.sock"
+ENV DOCKER_ENDPOINT "unix:///tmp/docker.sock"
 
 EXPOSE 8080
 
