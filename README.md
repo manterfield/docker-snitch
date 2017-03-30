@@ -3,7 +3,9 @@ Docker Snitch
 
 
 ###TODO
-- [ ] Create Dockerfile
-- [ ] Create simple webservice
-- [ ] Get info on running containers
-- [ ] Present info on running containers via webservice
+- [x] Create Dockerfile
+- [x] Create simple webservice
+- [x] Get info on running containers
+- [x] Present info on running containers via webservice
+- [ ] Add token auth
+- [ ] Add monitoring metrics
