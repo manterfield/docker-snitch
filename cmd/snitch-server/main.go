@@ -6,6 +6,7 @@ import (
     "github.com/manterfield/docker-snitch"
     docker "github.com/fsouza/go-dockerclient"
     "net/http"
+    "sort"
     "strings"
 )
 
