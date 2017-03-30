@@ -31,18 +31,18 @@ func containerOpts() http.Handler {
         containers := dockersnitch.Containers(status)
 
         w.Header().Set("Content-Type", "application/json")
-        json.NewEncoder(w).Encode(rundeckContainerOpts(containers))
+        json.NewEncoder(w).Encode(getContainerOpts(containers))
     })
 }
 
-type RundeckContainerOpt struct {
+type ContainerOpt struct {
     Name string `json:"name"`
     Value string `json:"value"`
-} 
+}
 
-func rundeckContainerOpts(ctrs []docker.APIContainers) []RundeckContainerOpt {
-    var containerOpts []RundeckContainerOpt
-    var ctrOpt RundeckContainerOpt
+func getContainerOpts(ctrs []docker.APIContainers) []ContainerOpt {
+    var containerOpts []ContainerOpt
+    var ctrOpt ContainerOpt
     var optName string
 
     for _, ctr := range ctrs {
@@ -51,10 +51,13 @@ func rundeckContainerOpts(ctrs []docker.APIContainers) []RundeckContainerOpt {
         }
         optName = strings.Join(append(ctr.Names, ctr.Image), " ")
         optName = strings.TrimLeft(optName, "/")
-        ctrOpt = RundeckContainerOpt{Name: optName, Value: ctr.ID}
+        ctrOpt = ContainerOpt{Name: optName, Value: ctr.ID}
         containerOpts = append(containerOpts, ctrOpt)
     }
 
+    sort.Slice(containerOpts, func(i, j int) bool {
+        return containerOpts[i].Name < containerOpts[j].Name
+    })
     return containerOpts
 }
 
