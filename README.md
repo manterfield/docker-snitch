@@ -1,5 +1,5 @@
 # docker-snitch
-Docker Snitch
+Docker Snitch **BETA**
 
 A service exposing info on running containers over a simple web API. Can be used as a remote option provider to Rundeck.
 
